@@ -1,0 +1,59 @@
+require:
+  - rubocop-rails
+
+AllCops:
+ TargetRubyVersion: 2.7
+ NewCops: enable
+ Exclude:
+   - 'bin/**/*'
+   - 'vendor/**/*'
+   - 'db/**/*'
+   - 'config/**/*'
+   - 'spec/rails_helper.rb'
+
+Style/Documentation:
+ Enabled: false
+
+Metrics/BlockLength:
+ IgnoredMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+# Layout/EmptyLinesAroundAttributeAccessor:
+#   Enabled: true
+# Layout/SpaceAroundMethodCallOperator:
+#   Enabled: true
+# Lint/DeprecatedOpenSSLConstant:
+#   Enabled: true
+# Lint/MixedRegexpCaptureTypes:
+#   Enabled: true
+# Lint/RaiseException:
+#   Enabled: true
+# Lint/StructNewOverride:
+#   Enabled: true
+# Style/AsciiComments:
+#   Enabled: false
+# Style/ExponentialNotation:
+#   Enabled: true
+# Style/HashEachMethods:
+#   Enabled: true
+# Style/HashTransformKeys:
+#   Enabled: true
+# Style/HashTransformValues:
+#   Enabled: true
+# Style/RedundantRegexpCharacterClass:
+#   Enabled: true
+# Style/RedundantRegexpEscape:
+#   Enabled: true
+# Style/SlicingWithRange:
+#   Enabled: true
+Style/ClassAndModuleChildren:
+  Enabled: false
+# Style/RaiseArgs:
+#   Enabled: false
+# Style/ConditionalAssignment:
+#   Enabled: false
