@@ -1,12 +1,13 @@
 # api-authentication
 
-Simple API with devise authentication
-Things you may want to cover:
+Simple API with devise authentication using JWT
 
-* Ruby version
-2.7.3
+* Ruby version 2.7.3
+* Rails 6.1.4
 
 * System dependencies
+
+  PostgreSQL
 
 * Configuration
 
