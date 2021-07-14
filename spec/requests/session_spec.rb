@@ -47,5 +47,12 @@ RSpec.describe 'Sessions', type: :request do
 
       expect(response).to have_http_status(:ok)
     end
+
+    it 'get unauthorized when passing wrong token' do
+      headers = { 'Authorization' => 'Token xyz' }
+      get '/api/user', headers: headers
+
+      expect(response).to have_http_status(:unauthorized)
+    end
   end
 end

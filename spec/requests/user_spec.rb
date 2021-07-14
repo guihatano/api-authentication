@@ -28,5 +28,12 @@ RSpec.describe 'Users', type: :request do
       expect(parsed_response['user']).to have_key('name')
       expect(parsed_response['user']['name']).to eq(name)
     end
+
+    it 'is not updated with an email nil' do
+      headers = { 'ACCEPT' => 'application/json', 'Authorization' => "Token #{@token}" }
+      put '/api/user', params: { user: { email: nil } }, headers: headers
+
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
   end
 end
