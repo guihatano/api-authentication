@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session, unless: -> { request.format.json? }
 
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:status]
 
   respond_to :json
+
+  def status
+    render json: { status: 'Up and running!' }
+  end
 
   private
 

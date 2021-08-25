@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
     resource :user, only: %i[show update]
   end
+
+  root to: 'application#status'
 end
