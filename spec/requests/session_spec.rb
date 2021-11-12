@@ -9,13 +9,10 @@ RSpec.describe('Sessions', type: :request, clean: true, order: :random) do
     it 'successful sign in with write parameters' do
       headers = { 'ACCEPT' => 'application/json' }
       post '/api/auth/login', params: { email: user.email, password: 'password' }, headers: headers
-
+      parsed_response = JSON.parse(response.body)
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(response).to have_http_status(:ok)
-
-      parsed_response = JSON.parse(response.body)
       expect(parsed_response.keys).to eq(['user'])
-
       expect(parsed_response['user']).to have_key('token')
       expect(parsed_response['user']['token']).to be_a(String)
     end

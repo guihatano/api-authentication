@@ -1,0 +1,11 @@
+#################
+# DISABLED COPS #
+#################
+
+RSpec/ExampleLength:
+  Description: 'A long example is usually more difficult to understand.'
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Description: 'Checks if examples contain too many `expect` calls.'
+  Enabled: false

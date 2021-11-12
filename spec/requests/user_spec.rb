@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe('Users', type: :request, clean: true, order: :random) do
@@ -15,16 +17,16 @@ RSpec.describe('Users', type: :request, clean: true, order: :random) do
   end
 
   describe 'PUT /user' do
+    let(:name) { 'Updated User Name' }
+
     it 'successful update user' do
-      name = 'Updated User Name'
       headers = { 'ACCEPT' => 'application/json', 'Authorization' => "Token #{token}" }
       put '/api/user', params: { user: { name: name } }, headers: headers
 
-      expect(response).to(have_http_status(:ok))
-
       parsed_response = JSON.parse(response.body)
-      expect(parsed_response.keys).to eq(['user'])
 
+      expect(response).to(have_http_status(:ok))
+      expect(parsed_response.keys).to eq(['user'])
       expect(parsed_response['user']).to have_key('name')
       expect(parsed_response['user']['name']).to eq(name)
     end
