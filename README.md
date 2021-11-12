@@ -2,21 +2,25 @@
 
 Simple API with devise authentication using JWT
 
-* Ruby version 2.7.3
-* Rails 6.1.4
+* Ruby version 2.7.4
+* Rails 6.1.4.1
 
 * System dependencies
 
   PostgreSQL
 
 * Configuration
+```
+bundle install
+```
 
 * Database creation
 
-* Database initialization
+```
+rails db:setup
+```
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+```
+rspec -fd
+```
