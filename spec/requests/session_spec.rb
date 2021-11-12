@@ -2,15 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Sessions', type: :request do
-  before(:all) do
-    @user = create(:user)
-  end
+RSpec.describe('Sessions', type: :request, clean: true, order: :random) do
+  let(:user) { create(:user) }
 
   describe 'POST /api/auth/login' do
     it 'successful sign in with write parameters' do
       headers = { 'ACCEPT' => 'application/json' }
-      post '/api/auth/login', params: { email: @user.email, password: 'password' }, headers: headers
+      post '/api/auth/login', params: { email: user.email, password: 'password' }, headers: headers
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(response).to have_http_status(:ok)
@@ -19,8 +17,7 @@ RSpec.describe 'Sessions', type: :request do
       expect(parsed_response.keys).to eq(['user'])
 
       expect(parsed_response['user']).to have_key('token')
-
-      @token = parsed_response['user']['token']
+      expect(parsed_response['user']['token']).to be_a(String)
     end
 
     it 'responds 422 with wrong email sign in' do
@@ -33,7 +30,7 @@ RSpec.describe 'Sessions', type: :request do
 
     it 'responds 422 with wrong password sign in' do
       headers = { 'ACCEPT' => 'application/json' }
-      post '/api/auth/login', params: { email: @user.email, password: 'wrong-password' }, headers: headers
+      post '/api/auth/login', params: { email: user.email, password: 'wrong-password' }, headers: headers
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(response).to have_http_status(:unprocessable_entity)
@@ -42,7 +39,7 @@ RSpec.describe 'Sessions', type: :request do
 
   describe 'GET /api/user' do
     it 'successful get response 200 OK when passing valid authorization token' do
-      headers = { 'Authorization' => "Token #{@user.generate_jwt}" }
+      headers = { 'Authorization' => "Token #{user.generate_jwt}" }
       get '/api/user', headers: headers
 
       expect(response).to have_http_status(:ok)
