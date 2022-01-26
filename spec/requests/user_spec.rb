@@ -7,8 +7,9 @@ RSpec.describe('Users', type: :request, clean: true, order: :random) do
   let(:token) { user.generate_jwt }
 
   describe 'GET /show' do
+    let(:headers) { { 'Authorization' => "Token #{token}" } }
+
     it 'successful get user' do
-      headers = { 'Authorization' => "Token #{token}" }
       get '/api/user', headers: headers
 
       expect(response).to(have_http_status(:ok))
@@ -17,10 +18,10 @@ RSpec.describe('Users', type: :request, clean: true, order: :random) do
   end
 
   describe 'PUT /user' do
-    let(:name) { 'Updated User Name' }
+    let(:name)    { 'Updated User Name' }
+    let(:headers) { { 'ACCEPT' => 'application/json', 'Authorization' => "Token #{token}" } }
 
     it 'successful update user' do
-      headers = { 'ACCEPT' => 'application/json', 'Authorization' => "Token #{token}" }
       put '/api/user', params: { user: { name: name } }, headers: headers
 
       parsed_response = JSON.parse(response.body)
@@ -32,10 +33,9 @@ RSpec.describe('Users', type: :request, clean: true, order: :random) do
     end
 
     it 'is not updated with an email nil' do
-      headers = { 'ACCEPT' => 'application/json', 'Authorization' => "Token #{token}" }
       put '/api/user', params: { user: { email: nil } }, headers: headers
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to(have_http_status(:unprocessable_entity))
     end
   end
 end
