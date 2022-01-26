@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   respond_to :json
 
+  # @route GET / (root)
   def status
     render json: { status: 'Up and running!' }
   end
