@@ -7,8 +7,8 @@ RSpec.describe(ApplicationController, type: :request, clean: true, order: :rando
     it 'successful get response 200 OK' do
       get '/'
 
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include('Up and running!')
+      expect(response).to(have_http_status(:ok))
+      expect(response.body).to(include('Up and running!'))
     end
   end
 end

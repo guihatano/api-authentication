@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe(User, type: :model, order: :random) do
-  let(:user) do
+  subject(:user) do
     described_class.new(email: 'email@test.com',
                         password: 'password',
                         name: 'User Test',
