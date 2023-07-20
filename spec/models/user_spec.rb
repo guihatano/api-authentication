@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe(User, type: :model, order: :random) do
+RSpec.describe(User, order: :random) do
   subject(:user) do
     described_class.new(
       email: 'email@test.com',

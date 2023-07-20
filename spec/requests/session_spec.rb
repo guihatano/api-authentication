@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe('Sessions', type: :request, clean: true, order: :random) do
+RSpec.describe('Sessions', clean: true, order: :random) do
   let(:user) { create(:user) }
 
   describe 'POST /api/auth/login' do

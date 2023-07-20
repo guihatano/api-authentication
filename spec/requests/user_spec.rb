@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe('Users', type: :request, clean: true, order: :random) do
+RSpec.describe('Users', clean: true, order: :random) do
   let(:user)  { create(:user) }
   let(:token) { user.generate_jwt }
 

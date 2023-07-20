@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
-RSpec.describe(ApplicationController, type: :request, clean: true, order: :random) do
+RSpec.describe(ApplicationController, clean: true, order: :random) do
   describe 'GET /' do
     it 'successful get response 200 OK' do
       get '/'
