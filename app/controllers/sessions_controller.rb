@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# SessionsController
 class SessionsController < Devise::SessionsController
+  # @route POST /api/auth/login {format: :json} (user_session)
   def create
     user = User.find_by(email: sign_in_params[:email])
 

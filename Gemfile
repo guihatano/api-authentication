@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'chusaku', require: false
   gem 'listen', '~> 3.3'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

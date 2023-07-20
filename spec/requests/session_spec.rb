@@ -6,10 +6,12 @@ RSpec.describe('Sessions', type: :request, clean: true, order: :random) do
   let(:user) { create(:user) }
 
   describe 'POST /api/auth/login' do
+    let(:headers) { { 'ACCEPT' => 'application/json' } }
+
     it 'successful sign in with write parameters' do
-      headers = { 'ACCEPT' => 'application/json' }
       post '/api/auth/login', params: { email: user.email, password: 'password' }, headers: headers
       parsed_response = JSON.parse(response.body)
+
       expect(response.content_type).to eq('application/json; charset=utf-8')
       expect(response).to have_http_status(:ok)
       expect(parsed_response.keys).to eq(['user'])
@@ -18,7 +20,6 @@ RSpec.describe('Sessions', type: :request, clean: true, order: :random) do
     end
 
     it 'responds 422 with wrong email sign in' do
-      headers = { 'ACCEPT' => 'application/json' }
       post '/api/auth/login', params: { email: 'not@registered.com', password: 'password' }, headers: headers
 
       expect(response.content_type).to eq('application/json; charset=utf-8')
@@ -26,7 +27,6 @@ RSpec.describe('Sessions', type: :request, clean: true, order: :random) do
     end
 
     it 'responds 422 with wrong password sign in' do
-      headers = { 'ACCEPT' => 'application/json' }
       post '/api/auth/login', params: { email: user.email, password: 'wrong-password' }, headers: headers
 
       expect(response.content_type).to eq('application/json; charset=utf-8')

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# ApplicationController
 class ApplicationController < ActionController::Base
   # include ActionController::RequestForgeryProtection
   # Prevent CSRF attacks by raising an exception.
@@ -11,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   respond_to :json
 
+  # @route GET / (root)
   def status
     render json: { status: 'Up and running!' }
   end
