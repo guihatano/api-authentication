@@ -9,4 +9,13 @@ RSpec.describe(ApplicationController, clean: true, order: :random) do
       expect(response.body).to(include('Up and running!'))
     end
   end
+
+  describe 'authentication' do
+    context 'when unauthenticated request' do
+      it 'requires authentication for other endpoints' do
+        get '/api/user'
+        expect(response).to(have_http_status(:unauthorized))
+      end
+    end
+  end
 end
